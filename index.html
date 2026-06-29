@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Okhtein Store</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style></style>
+</head>
+
+<body>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement">
+    <span>بنهتم بكل تفصيلة في طلبك 🎀</span>
+    <span>شحن مجاني مع أول طلب  🎁</span>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-main">أختين ستور</span>
+        <span class="logo-sub">Okhtein Store</span>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#products" onclick="filterProducts('all')" class="active">الكل</a></li>
+          <li><a href="#products" onclick="filterProducts('makeup')">💄 MAKEUP</a></li>
+          <li><a href="#products" onclick="filterProducts('skincare')">✨ SKIN CARE</a></li>
+          <li><a href="#products" onclick="filterProducts('haircare')">💇‍♀️ HAIR CARE</a></li>
+          <li><a href="#products" onclick="filterProducts('perfumes')">🌹 PERFUMES</a></li>
+          <li><a href="#products" onclick="filterProducts('clothes')">👗 CLOTHES</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="ابحثي هنا..." id="searchInput" oninput="searchProducts()">
+        </div>
+        <button class="cart-btn" onclick="toggleCart()">
+          <i class="fas fa-shopping-bag"></i>
+          السلة
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
+    <div class="mobile-nav-links">
+      <a href="#products" onclick="filterProducts('all');toggleMobileMenu()"><i class="fas fa-th-large"></i> جميع
+        المنتجات</a>
+      <a href="#products" onclick="filterProducts('makeup');toggleMobileMenu()"><i class="fas fa-magic"></i> المكياج</a>
+      <a href="#products" onclick="filterProducts('skincare');toggleMobileMenu()"><i class="fas fa-leaf"></i> العناية
+        بالبشرة</a>
+      <a href="#products" onclick="filterProducts('haircare');toggleMobileMenu()"><i class="fas fa-wind"></i> العناية
+        بالشعر</a>
+      <a href="#products" onclick="filterProducts('perfumes');toggleMobileMenu()"><i class="fas fa-spray-can"></i>
+        العطور</a>
+      <a href="#products" onclick="filterProducts('clothes');toggleMobileMenu()"><i class="fas fa-tshirt"></i> الملابس
+        الأنثوية</a>
+    </div>
+  </div>
+
+  <!-- MOBILE SEARCH BAR -->
+  <div class="mobile-search-bar">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="ابحثي عن منتج..." id="mobileSearchInput" oninput="mobileSearch()">
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">✦ وصل الجديد لموسم الخريف</div>
+        <h1 class="hero-title">
+          جمالك يبدأ<br>
+          من <span>اختياراتك</span>
+        </h1>
+        <p class="hero-desc">
+          اكتشفي أرقى منتجات الميكب والعناية والبرفيوم، وكل اللي بتحتاجيه عشان تكوني دايماً واثقة وجميلة.
+        </p>
+        <div class="hero-ctas">
+          <a href="#products" class="btn-primary"><i class="fas fa-shopping-bag"></i> تسوقي الآن</a>
+          <a href="#categories" class="btn-secondary"><i class="fas fa-th-large"></i> استكشفي الفئات</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">+500</span>
+            <span class="stat-label">منتج أصيل</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">+12K</span>
+            <span class="stat-label">عميلة سعيدة</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">4.9⭐</span>
+            <span class="stat-label">تقييم العملاء</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img-wrap">
+          <div class="hero-img-blob"></div>
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&q=80" alt="جمالك"
+            class="hero-main-img">
+          <div class="hero-float-card card-1">
+            <div class="float-icon">💄</div>
+            <div class="float-text">
+              <div class="f-title">منتجات جديده</div>
+              <div class="f-sub">وصلت للتو!</div>
+            </div>
+          </div>
+          <div class="hero-float-card card-2">
+            <div class="float-icon">🌹</div>
+            <div class="float-text">
+              <div class="f-title">بيرفيوم فاخر</div>
+              <div class="f-sub">خصم 20%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories-section" id="categories">
+    <div class="section-title">
+      <span class="section-eyebrow">استكشفي عالمنا</span>
+      <h2>تسوقي بالفئة</h2>
+      <p>كل ما تحتاجينه في مكان واحد</p>
+      <span class="title-line"></span>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card active-cat" onclick="filterProducts('makeup');scrollToProducts()">
+        <div style="overflow:hidden; aspect-ratio:1; position:relative;">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&q=80" alt="مكياج"
+            class="cat-img">
+          <div class="cat-overlay"></div>
+        </div>
+        <div class="cat-info">
+          <span class="cat-icon">💄</span>
+          <div class="cat-name">MAKEUP</div>
+          <div class="cat-count">+120 منتج</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('skincare');scrollToProducts()">
+        <div style="overflow:hidden; aspect-ratio:1; position:relative;">
+          <img src="https://i.pinimg.com/736x/ba/7a/95/ba7a9573cba5164cec6649c1a9908569.jpg" alt="عناية بشرة"
+            class="cat-img">
+          <div class="cat-overlay"></div>
+        </div>
+        <div class="cat-info">
+          <span class="cat-icon">✨</span>
+          <div class="cat-name">SKIN CARE</div>
+          <div class="cat-count">+85 منتج</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('haircare');scrollToProducts()">
+        <div style="overflow:hidden; aspect-ratio:1; position:relative;">
+          <img src="https://i.pinimg.com/736x/4b/b6/47/4bb647697618fed5fc29a98879c90b33.jpg" alt="عناية شعر"
+            class="cat-img">
+          <div class="cat-overlay"></div>
+        </div>
+        <div class="cat-info">
+          <span class="cat-icon">💇‍♀️</span>
+          <div class="cat-name">HAIR CARE</div>
+          <div class="cat-count">+60 منتج</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('perfumes');scrollToProducts()">
+        <div style="overflow:hidden; aspect-ratio:1; position:relative;">
+          <img src="https://i.pinimg.com/736x/23/cf/ba/23cfbad89bbaf66bcb07cbf1d09bb509.jpg" alt="عطور" class="cat-img">
+          <div class="cat-overlay"></div>
+        </div>
+        <div class="cat-info">
+          <span class="cat-icon">🌹</span>
+          <div class="cat-name">PERFUMES</div>
+          <div class="cat-count">+45 منتج</div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('clothes');scrollToProducts()">
+        <div style="overflow:hidden; aspect-ratio:1; position:relative;">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&q=80" alt="ملابس"
+            class="cat-img">
+          <div class="cat-overlay"></div>
+        </div>
+        <div class="cat-info">
+          <span class="cat-icon">👗</span>
+          <div class="cat-name">FEMININE CLOTHES </div>
+          <div class="cat-count">+200 منتج</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products-section" id="products">
+    <div class="section-title">
+      <span class="section-eyebrow">الأكثر مبيعاً</span>
+      <h2>منتجاتنا المميزة</h2>
+      <p>اختارت آلاف العميلات هذه المنتجات</p>
+      <span class="title-line"></span>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterProducts('all')" data-cat="all">🛍️ الكل</button>
+      <button class="filter-tab" onclick="filterProducts('makeup')" data-cat="makeup">💄 المكياج</button>
+      <button class="filter-tab" onclick="filterProducts('skincare')" data-cat="skincare">✨ العناية بالبشرة</button>
+      <button class="filter-tab" onclick="filterProducts('haircare')" data-cat="haircare">💇‍♀️ العناية بالشعر</button>
+      <button class="filter-tab" onclick="filterProducts('perfumes')" data-cat="perfumes">🌹 العطور</button>
+      <button class="filter-tab" onclick="filterProducts('clothes')" data-cat="clothes">👗 الملابس</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <div class="promo-banner">
+    <div class="promo-circles"></div>
+    <img src="https://images.unsplash.com/photo-1567721913486-6585f069b3a1?w=400&q=80" alt="" class="promo-img">
+    <div class="promo-content">
+      <div class="promo-tag">🎀 عرض محدود الوقت</div>
+      <h2 class="promo-title">وفري حتى 40%<br>على منتجات العناية</h2>
+      <p class="promo-sub">عروض لا تُفوَّت على أفضل ماركات العناية بالبشرة والشعر</p>
+      <button class="promo-btn" onclick="filterProducts('skincare');scrollToProducts()">اكتشفي العروض ←</button>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="features-inner">
+      <div class="feature-item">
+        <div class="feature-icon-wrap">🚚</div>
+        <div class="feature-title">شحن سريع ومجاني</div>
+        <p class="feature-desc">توصيل سريع مجاناً للطلبات فوق 1000 جنيه</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon-wrap">✅</div>
+        <div class="feature-title">منتجات أصلية مضمونة</div>
+        <p class="feature-desc">نضمن لكِ أصالة جميع منتجاتنا 100% مع شهادات اعتماد رسمية</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon-wrap">🔄</div>
+        <div class="feature-title">إرجاع واسترداد سهل</div>
+        <p class="feature-desc">إمكانية الإرجاع خلال 14 يوماً من الاستلام دون أي تعقيدات</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon-wrap">💬</div>
+        <div class="feature-title">دعم 24/7 عبر واتساب</div>
+        <p class="feature-desc">فريقنا جاهز لمساعدتكِ في أي وقت عبر واتساب وخدمة العملاء</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-text">أختين ستور</span>
+          <p class="footer-desc">وجهتكِ الأولى لكل ما يتعلق بجمالك وأناقتك. نقدم أرقى المنتجات من أشهر الماركات العالمية
+            بأسعار تناسب الجميع.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-snapchat"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>الفئات</h4>
+          <ul>
+            <li><a href="#" onclick="filterProducts('makeup');scrollToProducts()">💄 المكياج</a></li>
+            <li><a href="#" onclick="filterProducts('skincare');scrollToProducts()">✨ العناية بالبشرة</a></li>
+            <li><a href="#" onclick="filterProducts('haircare');scrollToProducts()">💇‍♀️ العناية بالشعر</a></li>
+            <li><a href="#" onclick="filterProducts('perfumes');scrollToProducts()">🌹 العطور</a></li>
+            <li><a href="#" onclick="filterProducts('clothes');scrollToProducts()">👗 الملابس</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>روابط مهمة</h4>
+          <ul>
+            <li><a href="#">من نحن</a></li>
+            <li><a href="#">تواصلي معنا</a></li>
+            <li><a href="#">سياسة الخصوصية</a></li>
+            <li><a href="#">الشروط والأحكام</a></li>
+            <li><a href="#">سياسة الإرجاع</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصلي معنا</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-whatsapp"></i> واتساب</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> البريد الإلكتروني</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> الرياض، السعودية</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 أختين ستور — جميع الحقوق محفوظة</span>
+        <div class="footer-payments">
+          <span class="pay-badge">Visa</span>
+          <span class="pay-badge">Mastercard</span>
+          <span class="pay-badge">مدى</span>
+          <span class="pay-badge">Apple Pay</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART OVERLAY + DRAWER -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <div class="cart-header-title"><i class="fas fa-shopping-bag"></i> سلة التسوق</div>
+      <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty" id="cartEmpty">
+        <i class="fas fa-shopping-bag"></i>
+        <p>سلتك فارغة</p>
+        <span>ابدئي التسوق واضيفي منتجاتك المفضلة</span>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>المجموع الفرعي</span>
+          <span id="subtotalVal">0ج.م</span>
+        </div>
+        <div class="summary-row">
+          <span>الشحن</span>
+          <span style="color:#25D366; font-weight:700;">مجاني 🎁</span>
+        </div>
+        <div class="summary-row total">
+          <span>الإجمالي</span>
+          <span id="totalVal">0 ر.س</span>
+        </div>
+      </div>
+      <!-- استبدل قسم الـ cart-footer الحالي بهذا -->
+<div class="cart-footer" id="cartFooter" style="display:none;">
+  <div class="cart-summary">
+    <!-- ... (محتويات الـ summary كما هي) ... -->
+  </div>
+  
+  <!-- حقول إدخال البيانات -->
+  <div class="checkout-inputs" style="margin-top: 15px;">
+    <input type="text" id="customerName" placeholder="الاسم الكريم" style="width:100%; padding:8px; margin-bottom:8px; border:1px solid #ccc; border-radius:8px;">
+    <input type="text" id="customerAddress" placeholder="عنوان التوصيل" style="width:100%; padding:8px; margin-bottom:8px; border:1px solid #ccc; border-radius:8px;">
+    <input type="tel" id="customerPhone" placeholder="رقم الهاتف" style="width:100%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:8px;">
+  </div>
+
+  <button class="whatsapp-btn" onclick="checkoutWhatsApp()">
+    <i class="fab fa-whatsapp"></i> إتمام الطلب عبر واتساب
+  </button>
+</div>
+      <button class="whatsapp-btn" onclick="checkoutWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+        إتمام الطلب عبر واتساب
+      </button>
+    </div>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mobile-bottom-nav">
+    <div class="bottom-nav-inner">
+      <a href="#hero" class="bnav-item active" id="bnav-home">
+        <i class="fas fa-home"></i>
+        <span>الرئيسية</span>
+      </a>
+      <a href="#categories" class="bnav-item" onclick="setBottomNav('bnav-cats')">
+        <i class="fas fa-th-large"></i>
+        <span>الفئات</span>
+      </a>
+      <a href="#products" class="bnav-item" onclick="setBottomNav('bnav-prods')">
+        <i class="fas fa-tag"></i>
+        <span>المنتجات</span>
+      </a>
+      <button class="bnav-item cart-bnav" onclick="toggleCart();setBottomNav('bnav-cart')">
+        <i class="fas fa-shopping-bag"></i>
+        <span>السلة</span>
+        <span class="bnav-badge" id="bnavBadge">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
